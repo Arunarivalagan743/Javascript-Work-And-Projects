@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced JavaScript Stopwatch</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="theme-toggle">
+            <i class="fas fa-moon"></i>
+            <i class="fas fa-sun hide"></i>
+        </div>
+        
+        <h1>Advanced Stopwatch</h1>
+        
+        <div class="stopwatch">
+            <div class="time-circle">
+                <div class="display">00:00:00<span class="milliseconds">.00</span></div>
+            </div>
+            
+            <div class="controls">
+                <button id="start" class="btn"><i class="fas fa-play"></i> Start</button>
+                <button id="stop" class="btn" disabled><i class="fas fa-pause"></i> Pause</button>
+                <button id="reset" class="btn"><i class="fas fa-redo"></i> Reset</button>
+                <button id="lap" class="btn"><i class="fas fa-flag"></i> Lap</button>
+            </div>
+            
+            <div class="timer-controls">
+                <div class="timer-option">
+                    <label for="countdown-toggle">Countdown Timer</label>
+                    <input type="checkbox" id="countdown-toggle">
+                </div>
+                <div class="countdown-settings hide">
+                    <input type="number" id="countdown-minutes" min="0" max="60" placeholder="Minutes">
+                    <input type="number" id="countdown-seconds" min="0" max="59" placeholder="Seconds">
+                    <button id="set-countdown" class="btn"><i class="fas fa-check"></i> Set</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-item">
+                <span class="stat-label">Best Lap:</span>
+                <span id="best-lap">--:--:--</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Avg Lap:</span>
+                <span id="avg-lap">--:--:--</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Last Session:</span>
+                <span id="last-session">--:--:--</span>
+            </div>
+        </div>
+        
+        <div class="laps">
+            <div class="laps-header">
+                <h2>Laps</h2>
+                <button id="clear-laps" class="btn"><i class="fas fa-trash"></i> Clear</button>
+                <button id="export-laps" class="btn"><i class="fas fa-download"></i> Export</button>
+            </div>
+            <ul id="lap-list"></ul>
+            <div class="no-laps">No laps recorded yet</div>
+        </div>
+    </div>
+    
+    <div class="notification" id="notification">
+        <div class="notification-content">
+            <i class="fas fa-info-circle"></i>
+            <span id="notification-text"></span>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

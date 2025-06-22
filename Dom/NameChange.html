@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="name">Name</h1>
+    <button id="john" onclick="nameChange(this)">john</button>
+        <button id="abu"onclick="nameChange(this)">abu</button>
+            <button id="hari"onclick="nameChange(this)">hari</button>
+            <script>
+                function nameChange(nameInsert)
+                {
+                 document.getElementById("name").textContent = nameInsert.textContent
+                }
+
+            </script>
+</body>
+</html>

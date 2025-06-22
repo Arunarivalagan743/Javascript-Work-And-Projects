@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation</title>
+    <style>
+        .container {
+          
+            display: inline-block;
+            padding: 20px;
+    
+            text-align: center;
+        }
+        input {
+            margin: 10px 0;
+            padding: 5px;
+        }
+        button {
+            padding: 5px 10px;
+            font-weight: bold;
+        }
+        #result {
+            margin-top: 10px;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="title">Hello nanba</h1>
+        <input type="number" id="num1" placeholder="Enter number 1">
+        <br>
+        <input type="number" id="num2" placeholder="Enter number 2">
+        <br>
+        <button onclick="totalNum()">Total</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+       
+        document.getElementById("title").textContent = "Hello machan";
+
+        function totalNum() {
+            const t1 = Number(document.getElementById("num1").value);
+            const t2 = Number(document.getElementById("num2").value);
+
+        
+
+            const tot = t1 + t2;
+            console.log("Total:", tot);
+            document.getElementById("result").textContent = "✅ Total: " + tot;
+        }
+    </script>
+</body>
+</html>

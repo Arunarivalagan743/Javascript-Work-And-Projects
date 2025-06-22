@@ -1,0 +1,184 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f9f9f9 0%, #f1f1f1 100%);
+    color: #333;
+    min-height: 100vh;
+    animation: fadeInBody 1s ease-in;
+}
+
+@keyframes fadeInBody {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.navbar {
+    background-color: #3e3e3e;
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 20px 30px;
+    text-align: center;
+    letter-spacing: 2px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    animation: slideDown 0.6s ease-in-out;
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.book-container {
+    padding: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+}
+
+.book-card {
+    background-color: #fffef0;
+    padding: 20px;
+    width: 280px;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeInCard 0.5s ease-in-out forwards;
+    opacity: 0;
+}
+
+.book-card:hover {
+    transform: scale(1.04);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+}
+
+@keyframes fadeInCard {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.book-card h1 {
+    font-size: 18px;
+    color: #b22222;
+    margin-bottom: 10px;
+}
+
+.book-card button {
+    background-color: crimson;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 18px;
+    margin-top: 12px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.book-card button:hover {
+    background-color: #a30000;
+    transform: scale(1.05);
+}
+
+.add-div {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 100;
+}
+
+.pop {
+    background-color: crimson;
+    color: white;
+    border: none;
+    padding: 18px 22px;
+    border-radius: 50%;
+    font-size: 28px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.pop:hover {
+    background-color: #a30000;
+    transform: scale(1.1);
+}
+
+#popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+#popup-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #ffffff;
+    padding: 30px 40px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    z-index: 1100;
+    display: none;
+    max-width: 350px;
+    width: 90%;
+    animation: popupFade 0.4s ease;
+}
+
+@keyframes popupFade {
+    from { transform: translate(-50%, -60%) scale(0.95); opacity: 0; }
+    to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+#popup-box input {
+    display: block;
+    margin: 12px 0;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: 100%;
+}
+
+.add-btn, .del-btn {
+    padding: 10px 20px;
+    margin: 10px 5px 0 0;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.add-btn {
+    background-color: seagreen;
+    color: white;
+}
+
+.add-btn:hover {
+    background-color: #2e8b57;
+    transform: scale(1.05);
+}
+
+.del-btn {
+    background-color: #b22222;
+    color: white;
+}
+
+.del-btn:hover {
+    background-color: #8b0000;
+    transform: scale(1.05);
+}

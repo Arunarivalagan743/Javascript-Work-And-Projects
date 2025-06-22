@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Revise Student Form</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9ff;
+      padding: 30px;
+      color: #333;
+    }
+
+    h2, h3 {
+      color: #4a4e69;
+      text-align: center;
+    }
+
+    form {
+      background-color: #ffffff;
+      padding: 20px 30px;
+      max-width: 500px;
+      margin: 0 auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    form p {
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="email"] {
+      width: 100%;
+      padding: 8px 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    button[type="submit"] {
+      background-color: #4a4e69;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #22223b;
+    }
+
+    table {
+      width: 90%;
+      margin: 30px auto;
+      border-collapse: collapse;
+      background-color: #fff;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 12px 15px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #9a8c98;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    tr:hover {
+      background-color: #e0e0e0;
+    }
+
+    td button {
+      padding: 6px 12px;
+      background-color: crimson;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    td button:hover {
+      background-color: darkred;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Student Form</h2>
+  <form id="form-container" onsubmit="saveData(event)">
+    
+    <p>Name:</p>
+    <input type="text" id="student-name" required>
+
+    <p>Age:</p>
+    <input type="number" id="student-age" required>
+
+  <p>Select Gender:</p>
+<label><input type="radio" name="gender" value="male" required> Male</label>
+<label><input type="radio" name="gender" value="female"> Female</label>
+
+    <p>Email:</p>
+    <input type="email" id="student-email" required>
+
+    <p>Course:</p>
+    <input type="text" id="student-course" required>
+
+    <button type="submit">Save</button>
+  </form>
+
+  <h3>Submitted Data</h3>
+  <table id="result-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Gender</th>
+        <th>Email</th>
+        <th>Course</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="result-body">
+  
+    </tbody>
+  </table>
+
+  <script>
+    function saveData(event) {
+      event.preventDefault();
+
+      const name = document.getElementById("student-name").value;
+      const age = document.getElementById("student-age").value;
+      const email = document.getElementById("student-email").value;
+      const course = document.getElementById("student-course").value;
+
+   
+    const gender = document.querySelector('input[name="gender"]:checked')?.value || "";
+
+      const tbody = document.getElementById("result-body");
+      const row = document.createElement("tr");
+
+      row.innerHTML = `
+        <td>${name}</td>
+        <td>${age}</td>
+        <td>${gender}</td>
+        <td>${email}</td>
+        <td>${course}</td>
+        <td><button onclick="this.parentElement.parentElement.remove()">Delete</button></td>
+      `;
+
+      tbody.appendChild(row);
+      document.getElementById("form-container").reset();
+    }
+  </script>
+
+</body>
+</html>
