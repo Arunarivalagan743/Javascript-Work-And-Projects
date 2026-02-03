@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dom project</title>
+    <style>
+      body{
+        font-family: Arial, Helvetica, sans-serif;
+
+      }
+      .subscribe-button{
+        font-size: large;
+        border: none;
+        background-color: black;
+        color: white;
+        padding: 15px 18px;
+        border-radius: 15px;
+        cursor: pointer;
+        margin-top: 20px;
+
+      }
+     
+      .is-subscribe{
+        background-color: rgb(169, 169, 169);
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <p>Subscribe button</p>
+    <button class="subscribe subscribe-button" onclick="sub()">subscribe</button>
+  </body>
+  <script>
+    function sub() {
+      let x = document.querySelector(".subscribe");
+      if (x.innerHTML === "subscribe") {
+        x.innerHTML = "subscribed";
+        x.classList.add('is-subscribe')
+      } else {
+        x.innerHTML = "subscribe";
+        x.classList.remove('is-subscribe')
+      }
+    }
+  </script>
+</html>

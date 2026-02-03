@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Amazon dom</title>
+    <style>
+        body{
+            font-family: 'Courier New', Courier, monospace;
+
+        }
+        .class-input{
+            font-size:large;
+            padding: 10px;
+            margin: 2px;
+        }
+        .cal-button{
+color: black;
+background-color: green;
+padding: 11px 20px;
+font-size: large;
+border: none;
+border-radius: 2px;
+color: white;
+cursor: pointer;
+margin-bottom: 2px;
+
+        }
+    </style>
+  </head>
+  <body>
+    <h1>AAMXONZ DOM</h1>
+    <h2>pricce:</h2>
+    <input type="number" id="c" onkeydown="keydownn(event)"class= "class-input" />
+    <button onclick="cal()" class="cal-button">calculate</button>
+    <p class="val"></p>
+    <script>
+      function keydownn(event) {
+        console.log(event);
+        if (event.key === "Enter") {
+          cal();
+          
+        }
+      }
+      function cal() {
+        // console.log( typeof document)
+        let k = Number(document.querySelector("#c").value);
+        console.log(k);
+        // console.log( typeof document.querySelector("c").value);
+        // console.log(typeof v);
+        // console.log(typeof  null);
+        if (k < 40) {
+          k = k + 10;
+        }
+
+        document.querySelector(".val").innerHTML = k;
+        console.log(window)
+      }
+      console.log(typeof null);
+    </script>
+  </body>
+</html>

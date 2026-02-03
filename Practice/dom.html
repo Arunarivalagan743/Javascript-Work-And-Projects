@@ -6,8 +6,16 @@
     <title>Dom</title>
 </head>
 <body>
+
+    <button  class="h1" onclick="fin()">H1</button>
     <script>
-        console.log(document);
+        // console.log(document);
+        // console.log(document.title);
+   function fin(){
+        setTimeout(()=>{
+      document.querySelector(".h1").textContent = "finished";
+        },1000)
+    }
     </script>
 </body>
 </html>

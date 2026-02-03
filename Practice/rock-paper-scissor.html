@@ -3,60 +3,170 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rock-Paper-Scisor</title>
+    <title>Rock Paper Scissors</title>
+
+    <style>
+      body {
+        font-family:
+          "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+        background-color: black;
+        color: white;
+        text-align: center;
+      }
+
+      h1 {
+        margin-top: 20px;
+      }
+
+      .r-button {
+        font-size: 50px;
+        border: 2px solid white;
+        padding: 20px;
+        margin: 15px;
+        border-radius: 10px;
+        background-color: black;
+        cursor: pointer;
+      }
+
+      .r-button:hover {
+        background-color: #222;
+      }
+
+      .reset,
+      .auto {
+        color: white;
+        background-color: rgb(198, 26, 26);
+        padding: 15px;
+        border: none;
+        border-radius: 10px;
+        width: 120px;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+
+      .result {
+        color: blueviolet;
+        font-size: 24px;
+        margin-top: 20px;
+      }
+
+      .user,
+      .computer {
+        font-size: 22px;
+        margin: 10px;
+      }
+
+      .scoreboard {
+        margin-top: 20px;
+        font-size: 22px;
+      }
+    </style>
   </head>
+
   <body>
-    <button onclick="play('rock')">rock</button>
-    <button onclick="play('paper')">paper</button>
-    <button onclick="play('scissor')">scissor</button>
-    <button onclick="reset()">Reset</button>
+    <h1>🪨 Rock Paper Scissors ✂️</h1>
+
+    <button class="r-button" onclick="play('rock')">🪨</button>
+    <button class="r-button" onclick="play('paper')">📄</button>
+    <button class="r-button" onclick="play('scissor')">✂️</button>
+
+    <br />
+    <button class="reset" onclick="resetGame()">Reset</button>
+    <button class="auto" onclick="autoGame()">Auto play</button>
+
+    <p class="result"></p>
+    <p class="user"></p>
+    <p class="computer"></p>
+    <h2 class="scoreboard"></h2>
+
     <script>
       let score = JSON.parse(localStorage.getItem("val")) || {
         win: 0,
         lose: 0,
         tie: 0,
       };
-      function reset() {
-        score.win = 0;
-        score.lose = 0;
-        score.tie = 0;
-        localStorage.removeItem("val");
-        alert("score reset");
+
+      updateScore();
+
+      let autoPlay = false;
+      let intervalId;
+      function autoGame() {
+        if (!autoPlay) {
+          intervalId = setInterval(function () {
+            const move = getComputerMove();
+            play(move);
+          }, 1000);
+          autoPlay = true;
+        } else {
+          clearInterval(intervalId);
+          autoPlay = false;
+        }
       }
-      function play(user) {
-        const computer = getMoveComputer();
-        calcluate(computer, user);
+
+      function play(userMove) {
+        const computerMove = getComputerMove();
+        calculateResult(userMove, computerMove);
       }
-      function calcluate(computer, user) {
+
+      function calculateResult(user, computer) {
         let result = "";
+
         if (user === computer) {
-          result = "Tie";
+          result = "🤝 It's a Tie";
           score.tie++;
         } else if (
           (user === "rock" && computer === "scissor") ||
           (user === "paper" && computer === "rock") ||
           (user === "scissor" && computer === "paper")
         ) {
-          result = "You Win";
+          result = "🎉 You Win!";
           score.win++;
         } else {
-          result = "You Lose";
+          result = "😢 You Lose!";
           score.lose++;
         }
-        let v = JSON.stringify(score);
-        localStorage.setItem("val", v);
-        
-        alert(
-          `${result}  because of ${computer} and Win ${score.win} - Lose ${score.lose} - Tie ${score.tie}`,
-        );
+
+        localStorage.setItem("val", JSON.stringify(score));
+
+        document.querySelector(".result").innerText = result;
+        document.querySelector(".user").innerText =
+          "Your Move: " + getIcon(user);
+        document.querySelector(".computer").innerText =
+          "Computer Move: " + getIcon(computer);
+
+        updateScore();
       }
-      function getMoveComputer() {
-        let computer = "";
+
+      function updateScore() {
+        document.querySelector(".scoreboard").innerText =
+          `Win: ${score.win} | Lose: ${score.lose} | Tie: ${score.tie}`;
+      }
+
+     function resetGame() {
+  score = { win: 0, lose: 0, tie: 0 };
+  localStorage.removeItem("val");
+
+  clearInterval(intervalId);
+  autoPlay = false;
+
+  document.querySelector(".result").innerText = "Game Reset";
+  document.querySelector(".user").innerText = "";
+  document.querySelector(".computer").innerText = "";
+  updateScore();
+}
+
+
+      function getComputerMove() {
         const random = Math.random();
-        if (random < 1 / 3) computer = "rock";
-        else if (random < 2 / 3) computer = "paper";
-        else computer = "scissor";
-        return computer;
+        if (random < 1 / 3) return "rock";
+        if (random < 2 / 3) return "paper";
+        return "scissor";
+      }
+
+      function getIcon(move) {
+        if (move === "rock") return "🪨";
+        if (move === "paper") return "📄";
+        if (move === "scissor") return "✂️";
       }
     </script>
   </body>
