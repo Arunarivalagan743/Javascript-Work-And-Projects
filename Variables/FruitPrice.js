@@ -15,3 +15,17 @@ console.log("Total price of the fruit is ",total)
 // console.log(num) --> error
 
 // const --> is used for constant value
+
+let a =[1,2,3,45];
+let b  =  [34,5,6,6];
+console.log(typeof (a+b));
+function ex()
+{
+    if(true)
+    {
+        var c =  3;
+        console.log(c);
+    }
+    console.log(c);
+}
+ex();
